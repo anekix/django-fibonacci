@@ -1,0 +1,195 @@
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Actor|Alfa+Slab+One" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center calculator-header">
+                FIBONACCI CALCULATOR
+                <div class="logout">
+                <form action="/accounts/logout/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary" value="Logout">Logout</button>
+                </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="row result-div">
+            <div class="col-sm-12">
+                <span class="key">Result</span>
+                <span class="value" id="result">90</span>
+            </div>
+        </div>
+        <div class="row result-div">
+
+            <div class="col-sm-12">
+                <span class="key">Computation Time</span>
+                <span class="value" id="computation-time">908</span>
+            </div>
+        </div>
+        <div class="row result-div">
+
+            <div class="col-sm-12">
+                <span class="key">Debug Stat(used Cache)</span>
+                <span class="value" id="cache-status">True</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-centered">
+            <form action="/test/calc/" method="POST">
+                {% csrf_token %}
+                  <div class="form-group">
+
+                <input type="number" id="nth_term">
+                </div>
+                  <div class="form-group">
+
+                <input type="button" class="btn btn-primary calculate-button" onclick="calculateFibonacci()" value="Calculate Fibonnaci">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-4 col-centered">
+            <form action="/accounts/logout/" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" value="Logout">Logouut</button>
+            </form>
+        </div>
+    </div>-->
+
+</body>
+<div class="lds-ripple">
+    <div></div>
+    <div></div>
+</div>
+
+</div>
+
+
+<style>
+#nth_term{
+    width: 100%;
+    height:50%;
+}
+
+    .result-div {
+        font-family: 'Actor', sans-serif;
+        background-color: white;
+        /*display: 'none';*/
+    }
+    
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+    }
+    
+    .calculator-header, .calculate-button {
+        background-color: #50597A;
+        color: white;
+        font-family: 'Alfa Slab One', cursive;
+        font-size: 40px;
+    }
+    
+    body {
+        background-color: #384363;
+    }
+    
+    .key {
+        font-size: 1.10em;
+        font-variant: small-caps;
+        font-weight: 600;
+        color: #000000;
+    }
+    
+    .value {
+        margin-left: 20px;
+        font-size: 1.2em;
+        font-weight: 575;
+        color: #E2B80D;
+    }
+    
+    .lds-ripple {
+        display: none;
+        position: relative;
+        width: 64px;
+        height: 64px;
+    }
+    
+    .lds-ripple div {
+        position: absolute;
+        border: 4px solid black;
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    
+    .lds-ripple div:nth-child(2) {
+        animation-delay: -0.5s;
+    }
+    
+    @keyframes lds-ripple {
+        0% {
+            top: 28px;
+            left: 28px;
+            width: 0;
+            height: 0;
+            opacity: 1;
+        }
+        100% {
+            top: -1px;
+            left: -1px;
+            width: 58px;
+            height: 58px;
+            opacity: 0;
+        }
+    }
+</style>
+<script>
+    function calculateFibonacci() {
+        var n = $('#nth_term').val();
+        var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+        $('.lds-ripple').show();
+        $.ajax({
+            url: '/calculator/fib/',
+            headers: { 'X-CSRFToken': csrftoken },
+            type: 'POST', // This is the default though, you don't actually need to always mention it
+            data: {
+                'nth_term': $('#nth_term').val(),
+            },
+            success: function (data) {
+                console.log(data);
+                $('result-div').show();
+                $('.lds-ripple').hide();
+                $('#result').text(data.res);
+                $('#computation-time').text(data.time);
+                // alert(data.cached_result)
+                $('#cache-status').text(data.cached_result);
+
+            },
+            failure: function (data) {
+                alert('Got an error dude');
+            }
+        });
+
+
+
+    }
+
+</script>
+
+</html>

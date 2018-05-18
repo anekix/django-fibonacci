@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-centered">
+                <form role="form" method="post" action="{% url 'login' %}">{% csrf_token %}
+                    <div class="form-header">
+                        Login
+                    </div>
+                    <div class="form-group login-form">
+                        <p>
+                        {{ form.non_field_errors }}
+                        </p>
+                        <input class="form-control required" id="{{ form.username.id_for_label }}" maxlength="30" name="{{ form.username.html_name }}"
+                            type="text" /> {{ form.username.errors }}
+                        <input class="form-control required" id="{{ form.password.id_for_label }}" maxlength="30" name="{{ form.password.html_name }}"
+                            type="password" /> {{ form.password.errors }}
+                        <input type="submit" class="btn btn-primary" value="login" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<style>
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+    }
+.login-form{
+  background-color:#1e354c;
+  color: white;
+  /*padding-top: 100px;*/
+}
+.login-form  input{
+margin-top: 20px;
+}
+.form-header{
+    background-color: #263f58;
+}
+body{
+  background-color: #0d2339;
+
+}
+
+</style>
+
+</html>
