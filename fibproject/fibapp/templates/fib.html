@@ -55,7 +55,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 col-centered">
-            <form action="/test/calc/" method="POST" onkeypress="return event.keyCode != 13;">
+            <form onkeypress="return event.keyCode != 13;">
                 {% csrf_token %}
                   <div class="form-group">
                 <input type="number" id="nth_term">
