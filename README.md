@@ -5,8 +5,8 @@
 ### Architecture
 
 When client issues a request .
-1) request is handled by the nginx server which works as a reverse proxy
-2) nginx forwards the request to its upstream (wsgi gateway) that runs djnago.
+1) request is handled by the nginx server which works as a reverse proxy, forwards the request to its upstream (wsgi gateway)
+2) uwsgi runs django app that runs djnago & recieves request from its downstream server(nginx).
 3) when asking for nth fibonacci number fist a lookup is made in redis , which acts as in-memory cache. If there is a cache hit response is served from this cache.
 4) If there was a cache miss in above step lookup is made in disk based cache (sqlite).
 5) if steps 4 & 5 fails , the result is computed and sent as response.
