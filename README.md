@@ -31,7 +31,7 @@ When client issues a request .
   stats=>.<br>
   <b>1) Result</b> : The nth fibonacci number.<br>
   <b>2) Computation Time</b> : ( Time it took to calculate the result,  NOTE in case of a cache hit , computation time is less as expected).<br>
-  To test wheteher cache is being used or not (enter a random number say `8134` and see the `computation time`, then enter that number again and notice the `computation time`)
+  To test if cache is being used or not (enter a random number say `8134` and see the `computation time`, then enter that number again and notice the `computation time`).<br>
   <b>3) Debug Stat(used Cache)</b> : This field is set to true whenever there was a cache hit(in-memory) , set to false for all cache misses(in-memory).<br>
   
   
