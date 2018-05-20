@@ -34,4 +34,23 @@ When client issues a request .
   To test if cache is being used or not (enter a random number say `8134` and see the `computation time`, then enter that number again and notice the `computation time`).<br>
   <b>3) Debug Stat(used Cache)</b> : This field is set to true whenever there was a cache hit(in-memory) , set to false for all cache misses(in-memory).<br>
   
+  ### NGINX CONF
   
+```nginx 
+server{
+  listen *:6878;
+   location / {
+	include       uwsgi_params;
+        uwsgi_pass    unix:/tmp/callhub.sock;
+ 
+}
+
+ location /admin {
+
+        auth_basic "Restricted Content";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+        uwsgi_pass    unix:/tmp/callhub.sock;
+
+}
+}
+```
