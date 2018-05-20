@@ -55,11 +55,11 @@
     </div>
     <div class="row">
         <div class="col-md-4 col-centered">
-            <form action="/test/calc/" method="POST">
+            <form action="/test/calc/" method="POST" onkeypress="return event.keyCode != 13;">
                 {% csrf_token %}
                   <div class="form-group">
                 <input type="number" id="nth_term">
-                <input type="button" class="btn btn-primary" onclick="calculateFibonacci()" value="Calculate Fibonnaci">
+                <input type="button" class="btn btn-primary calc-btn" onclick="calculateFibonacci()" value="Calculate Fibonnaci">
                 </div>
             </form>
         </div>
@@ -93,7 +93,7 @@
         margin: 0 auto;
     }
     
-    .calculator-header, .calculate-button {
+    .calculator-header{
         background-color: #50597A;
         color: white;
         font-family: 'Alfa Slab One', cursive;
@@ -172,7 +172,6 @@
                 $('.lds-ripple').hide();
                 $('#result').text(data.res);
                 $('#computation-time').text(data.time);
-                // alert(data.cached_result)
                 $('#cache-status').text(data.cached_result);
 
             },
@@ -180,7 +179,6 @@
                 alert('Got an error dude');
             }
         });
-
 
 
     }
