@@ -7,7 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -20,7 +19,7 @@
                     </div>
                     <div class="form-group login-form">
                         <p>
-                        {{ form.non_field_errors }}
+                            {{ form.non_field_errors }}
                         </p>
                         <input class="form-control required" id="{{ form.username.id_for_label }}" maxlength="30" name="{{ form.username.html_name }}"
                             type="text" /> {{ form.username.errors }}
@@ -40,22 +39,28 @@
         float: none;
         margin: 0 auto;
     }
-.login-form{
-  background-color:#1e354c;
-  color: white;
-  /*padding-top: 100px;*/
-}
-.login-form  input{
-margin-top: 20px;
-}
-.form-header{
-    background-color: #263f58;
-}
-body{
-  background-color: #0d2339;
-
-}
-
+    
+    .login-form {
+        background-color: #1e354c;
+        color: white;
+        /*padding-top: 100px;*/
+    }
+    
+    .login-form input {
+        margin-top: 20px;
+    }
+    
+    .form-header {
+        background-color: #263f58;
+        color: white;
+        font-size: 1.10em;
+        font-variant: small-caps;
+        font-weight: 600;
+    }
+    
+    body {
+        background-color: #0d2339;
+    }
 </style>
 
 </html>

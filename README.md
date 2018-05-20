@@ -16,15 +16,18 @@ When client issues a request .
 
 1) for login go to http://139.59.92.166:6878/accounts/login/
 
-  LOgin screen
+![picture](images/login.png)
   
 2) Fill creds & click on submit.
 
 3) Fibonacci calculator page appears after successful login.
+![picture](images/calc1.png)
 
 4) Fill in the the nth number & click on `Calculate Fibonacci` button
 
 5) The result appears with some stats.<br>
+![picture](images/calculator.png)
+
   stats=>.<br>
   <b>1) Result</b> : The nth fibonacci number.<br>
   <b>2) Computation Time</b> : ( Time it took to calculate the result,  NOTE in case of a cache hit , computation time is less as expected).<br>
